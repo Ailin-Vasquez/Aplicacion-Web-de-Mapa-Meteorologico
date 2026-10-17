@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="description" content="Busca cualquier lugar del mundo y consulta su clima actual en un mapa interactivo.">
+  <title>Mapa Meteorológico Integral</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@0,700;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <h1>Mapa Meteorológico Integral</h1>
+      <p class="signature">Desarrollado por Ailin Vasquez</p>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="card search-panel" aria-label="Buscador">
+      <form id="search-form" novalidate>
+        <label for="city-input" class="sr-only">Lugar a buscar</label>
+        <input type="text" id="city-input" placeholder="Busca una ciudad, estado o país…" autocomplete="off">
+        <button type="submit" id="search-btn">Buscar</button>
+      </form>
+      <div id="message" class="message" role="status" aria-live="polite" hidden></div>
+      <div id="loader" class="loader" hidden>
+        <span class="spinner" aria-hidden="true"></span>
+        <span>Consultando información…</span>
+      </div>
+      <ul id="results-list" class="results-list" hidden></ul>
+    </section>
+
+    <section class="card location-bar" id="geo-card" aria-label="Información geográfica">
+      <div class="location-main">
+        <span class="pin" aria-hidden="true">📍</span>
+        <p id="place-name" class="place-name">Busca un lugar para comenzar.</p>
+      </div>
+      <div class="coords">
+        <span class="chip"><small>Latitud</small><strong id="lat">—</strong></span>
+        <span class="chip"><small>Longitud</small><strong id="lon">—</strong></span>
+      </div>
+    </section>
+
+    <section class="main-grid">
+      <div class="map-wrap">
+        <div id="map" aria-label="Mapa interactivo"></div>
+        <p class="map-hint">Toca o haz clic en el mapa para consultar otro punto.</p>
+      </div>
+
+      <aside class="weather-card" id="weather-card" aria-label="Clima actual">
+        <div class="sky-fx" aria-hidden="true"></div>
+        <p class="weather-title">Clima actual</p>
+        <div class="weather-hero">
+          <span id="weather-icon" class="weather-icon" aria-hidden="true">🌍</span>
+          <span id="temp" class="temp">—</span>
+        </div>
+        <p id="weather-condition" class="weather-condition">Sin datos</p>
+        <p id="range" class="range">Máx: — · Mín: —</p>
+        <dl class="stats">
+          <div><dt>💧 Humedad</dt><dd id="humidity">—</dd></div>
+          <div><dt>💨 Viento</dt><dd id="wind">—</dd></div>
+          <div><dt>🌡️ Sensación</dt><dd id="feels">—</dd></div>
+        </dl>
+        <p class="updated" id="updated">Actualización: —</p>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 Ailin Vasquez · Asignatura IAW</p>
+    <p class="credits">
+      Datos del mapa: © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors ·
+      Mosaicos: <a href="https://www.esri.com/" target="_blank" rel="noopener">Esri</a> ·
+      Búsqueda: <a href="https://nominatim.openstreetmap.org/" target="_blank" rel="noopener">Nominatim</a> ·
+      Clima: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a> ·
+      <a href="https://leafletjs.com/" target="_blank" rel="noopener">Leaflet</a>
+    </p>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="app.js"></script>
+</body>
+</html>
